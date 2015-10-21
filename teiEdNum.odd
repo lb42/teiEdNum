@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="fr"
+    xmlns:rng="http://relaxng.org/ns/structure/1.0">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title> TEI PUCC </title>
+            </titleStmt>
+            <publicationStmt>
+                <p>Unpublished draft</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>First created on Monday 21st June 2010 04:54:19 AM</p>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <!-- cant be PUC : teiDocNum -->
+            
+            <change when="2015-08">Convert TEI.xml from PUCC using odd2nuodd; add datatypes for
+                inDesign attribs</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <p>Personalisation TEI des éditions scientifiqes PUCC</p>
+            <div>
+                <head>Structure globale</head>
+                <p>Une édition PUCC correspond à un document TEI unitaire, encodé avec les éléments
+                    suivants : <specList>
+                        <specDesc key="TEI"/>
+                        <specDesc key="teiCorpus"/>
+                        <specDesc key="text"/>
+                        <specDesc key="teiHeader"/>
+                        <specDesc key="facsimile"/>
+                    </specList></p>
+                <p>Tous ces éléments sont obligatoires sauf <gi>facsimile</gi> ce dernier ne
+                    figurant que dans le cas où une édition PUCC  intègre des page images, des
+                    transcriptions, et des commentaires. </p>
+            </div>
+            <div>
+                <head>Front, body, etback</head>
+                <p> Tout TEI <gi>text</gi> contient une transcription moderne d'une source primaire
+                    y compris des annotations, introductions, commentaires, indices etc; ces
+                    co;posants sont organisés en utilisant ces éléments : <specList>
+                        <specDesc key="front"/>
+                        <specDesc key="body"/>
+                        <specDesc key="back"/>
+                        <specDesc key="div"/>
+                    </specList>Un élément <gi>text</gi> doit contenir un élément <gi>body</gi>,
+                    d'habitude précédé d'un <gi>front</gi>, et facultativement suivi d'un
+                        <gi>back</gi>. </p>
+                <p>Chacun de ces composants peut être décomposé hiérarachiquement en utilisant
+                    l'élément <gi>div</gi> .</p>
+            </div>
+            <div>
+                <head>Front matter</head>
+                <p>Dans le cas où on transcrit les préliminaires de l'édition source, ils peuvent
+                    être encodés en utilisant soit le <gi>div</gi> générique soit des éléments plus
+                    spécifiques,  à savoir <specList>
+                        <specDesc key="docAuthor"/>
+                        <specDesc key="docDate"/>
+                        <specDesc key="docEdition"/>
+                        <specDesc key="docImprint"/>
+                        <specDesc key="docTitle"/>
+                        <specDesc key="epigraph"/>
+                        <specDesc key="imprimatur"/>
+                        <specDesc key="titlePage"/>
+                        <specDesc key="titlePart"/>
+                    </specList></p>
+            </div>
+            <div>
+                <head>Composants des divisions</head>
+                <p>L'élément <gi>div</gi> s'applique à n'importe quel type de division d'un texte;
+                    par ex: un chapitre, une section, ou sous section etc: Son attribut
+                        <att>type</att> sert à distinguer les divisions selon leur fonction Cet
+                    attribut doit fournir une valeur choisie dans la liste suivante: <specList>
+                        <specDesc key="div" atts="type"/>
+                        <!--    à compléter -->
+                    </specList>
+                </p>
+                <p>D'habitude une division contiendra au moins un titre au début: Les éléments
+                    suivants servent à distinguer d'autres types de texte liminaire : <specList>
+                        <specDesc key="head"/>
+                        <specDesc key="byline"/>
+                        <specDesc key="dateline"/>
+                        <specDesc key="opener"/>
+                        <specDesc key="closer"/>
+                        <specDesc key="signed"/>
+                        <specDesc key="salute"/>
+                    </specList></p>
+                <div>
+                    <head>morceaux</head>
+                    <p>Pour un texte en prose, les divisions contiendront des paragraphes, ou
+                        d'autres blocs pareils, des listes, etc. Pour un texte poétique, il y aura
+                        des vers, facultativement regroupés en strophes. Pour un texte de theatre,
+                        il y aura des discours, chacun ayant une identification de la personne qui
+                        parle, suivi d'un morceau de prose ou de vers.  Les elements suivants sont
+                        fourni pour encoder de tels composants  : <specList>
+                            <specDesc key="p"/>
+                            <specDesc key="ab"/>
+                            <specDesc key="list"/>
+                            <specDesc key="item"/>
+                            <specDesc key="label"/>
+                            <specDesc key="lg"/>
+                            <specDesc key="l"/>
+                            <specDesc key="sp"/>
+                            <specDesc key="speaker"/>
+                        </specList></p>
+                    <p>Les notes et les didascalies,  peuveunt apparaitre au sein des autres
+                        morceaux ou entre morceaux Ils sont représentés par les éléments suivants:  <specList>
+                            <specDesc key="stage"/>
+                            <specDesc key="note"/>
+                        </specList></p>
+                </div>
+                <div>
+                    <head>Composants du niveau phrase</head>
+                    <p>Les éléments suivants sont utilisés pour signaller des distinctions au niveau
+                        de phrase : <specList>
+                            <specDesc key="hi"/>
+                            <specDesc key="q"/>
+                            <specDesc key="foreign"/>
+                            <specDesc key="date"/>
+                            <specDesc key="title"/>
+                            <specDesc key="name"/>
+                        </specList></p>
+                    <p>L'element <gi>seg</gi> est disponible pour signaller n'importe quel autre
+                        distinction souhaite : <specList>
+                            <specDesc key="seg" atts="type subtype"/>
+                        </specList>
+                    </p>
+                </div>
+                <div>
+                    <head>Milestones and pointers</head>
+                    <p>Les éléments suivants sont utilisés pour indiquer les frontières
+                        significatives ou bornes d'un texte<specList>
+                            <specDesc key="milestone"/>
+                            <specDesc key="cb"/>
+                            <specDesc key="lb"/>
+                            <specDesc key="pb"/>
+                        </specList></p>
+                    <p>L'élément suivant est utilisé pour indiquer tout type de reférence : <specList>
+                            <specDesc key="ref"/>
+                        </specList>
+                    </p>
+                </div>
+                <div>
+                    <head>Editorial interventions</head>
+                    <p>Les éléments suivants sont utilisés pour indiquer des interventions
+                        éditoriales dans la transcription d'un document source.<specList>
+                            <specDesc key="add"/>
+                            <specDesc key="del"/>
+                            <specDesc key="corr"/>
+                            <specDesc key="sic"/>
+                            <specDesc key="reg"/>
+                            <specDesc key="orig"/>
+                            <specDesc key="choice"/>
+                            <specDesc key="app"/>
+                            <specDesc key="rdg"/>
+                            <specDesc key="lem"/>
+                            <specDesc key="rdgGrp"/>
+                        </specList></p>
+                    
+                </div>
+                <div>
+                    <head>Non-textual components</head>
+                    <p>Les éléments suivants sont utilisés pour indiquer la présence des composants
+                        nontextuels tels les  graphies, les tables, la musique ou les  formules de
+                        math: <specList>
+                            <specDesc key="figure"/>
+                            <specDesc key="graphic"/>
+                            <specDesc key="figDesc"/>
+                            <specDesc key="formula"/>
+                             <specDesc key="row"/>
+                            <specDesc key="table"/>
+                            <specDesc key="cell"/>
+                        </specList>
+                    </p>
+                </div>
+                <div>
+                    <head>Bibliographic elements</head>
+                    <p>Les éléments suivants sont utilisés  pour l'encodage des descriptions
+                        bibliographiques <specList>
+                            <specDesc key="author"/>
+                            <specDesc key="bibl"/>
+                            <specDesc key="biblScope"/>
+                            <specDesc key="editor"/>
+                            <specDesc key="imprint"/>
+                            <specDesc key="pubPlace"/>
+                            <specDesc key="publisher"/>
+                            <specDesc key="resp"/>
+                            <specDesc key="respStmt"/>
+                            <specDesc key="series"/>
+                            <specDesc key="listBibl"/>
+                        </specList>
+                        <!-- remove 
+                            licence@cert
+                            sourceDesc/table 
+                            -->
+                    </p>
+                </div>
+            </div>
+            <div>
+                <head>Metadata</head>
+                <p>Nous utilisons un sous ensemble des éléments proposés pour le TEI Header <specList>
+                        <specDesc key="availability"/>
+                        <specDesc key="change"/>
+                        <specDesc key="creation"/>
+                        <specDesc key="edition"/>
+                        <specDesc key="editionStmt"/>
+                        <specDesc key="editorialDecl"/>
+                        <specDesc key="encodingDesc"/>
+                        <specDesc key="extent"/>
+                        <specDesc key="fileDesc"/>
+                        <specDesc key="funder"/>
+                        <specDesc key="idno"/>
+                        <specDesc key="langUsage"/>
+                        <specDesc key="language"/>
+                        <specDesc key="licence"/>
+                        <specDesc key="listChange"/>
+                        <specDesc key="listPrefixDef"/>
+                        <specDesc key="notesStmt"/>
+                        <specDesc key="prefixDef"/>
+                        <specDesc key="profileDesc"/>
+                        <specDesc key="projectDesc"/>
+                        <specDesc key="publicationStmt"/>
+                        <specDesc key="revisionDesc"/>
+                        <specDesc key="sourceDesc"/>
+                        <specDesc key="textClass"/>
+                        <specDesc key="titleStmt"/>
+                    </specList></p>
+            </div>
+            <div>
+                <head>Facsimilés</head>
+                <p>Pour les éditions qui comprennent des pages images en facsimilé nous pourrions
+                    utiliser ces éléments pour gérer la correspondence image texte <specList>
+                        <specDesc key="surfaceGrp"/>
+                        <specDesc key="surface"/>
+                        <specDesc key="zone"/>
+                        <specDesc key="line"/>
+                    </specList></p>
+            </div>
+            <div>
+                <head>Class modifications</head>
+                <p>Nous supprimons quelques classes d'attribut non-utilisées : <specGrp
+                        xml:id="deletions">
+                        <classSpec ident="att.cReferencing" type="atts" mode="delete"/>
+                        <classSpec ident="att.datcat" type="atts" mode="delete"/>
+                        <classSpec ident="att.declarable" type="atts" mode="delete"/>
+                        <classSpec ident="att.declaring" type="atts" mode="delete"/>
+                        <classSpec ident="att.dimensions" type="atts" mode="delete"/>
+                        <classSpec ident="att.divLike" type="atts" mode="delete"/>
+                        <classSpec ident="att.global.linking" type="atts" mode="delete"/>
+                      <classSpec ident="att.global.change" type="atts" mode="delete"/>                 
+                
+                        <classSpec ident="att.sortable" type="atts" mode="delete"/>
+                        <classSpec ident="att.spanning" type="atts" mode="delete"/>
+                    </specGrp></p>
+                <p>Nous simplifions d'autres classes d'attribut : <specGrp xml:id="simplified">
+                      <!--  <classSpec ident="att.global.rendition" type="atts" mode="change"
+                            module="tei">
+                            <attList>
+                                <attDef ident="rendition" mode="delete"/>
+                                <attDef ident="pstyle" mode="add"
+                                    ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                    <desc>correspondance de mise en forme dans Indesign (à l'échelle
+                                        du paragraphe).</desc>
+                                    <datatype><rng:text/></datatype>
+                                </attDef>
+                                <attDef ident="cstyle" mode="add"
+                                    ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                    <desc>correspondance de mise en forme dans Indesign (à l'échelle
+                                        de la séquence de caractères).</desc>
+                                    <datatype><rng:text/></datatype>
+                                </attDef>
+                            </attList>
+                        </classSpec>-->
+                        <classSpec ident="att.global" mode="change" type="atts" module="tei">
+                            <attList>
+                                <attDef ident="xml:base" mode="delete"/>
+                            </attList>
+                        </classSpec>
+                    </specGrp></p>
+                <classSpec ident="att.datable" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="calendar" mode="delete"/>
+                        <attDef ident="period" mode="delete"/>
+                    </attList>
+                </classSpec>
+                <classSpec ident="att.editLike" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="evidence" mode="delete"/>
+                        <attDef ident="instant" mode="delete"/>
+                    </attList>
+                </classSpec>
+                <classSpec ident="att.naming" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="nymRef" mode="delete"/>
+                    </attList>
+                </classSpec>
+                <classSpec ident="att.personal" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="full" mode="delete"/>
+                        <attDef ident="sort" mode="delete"/>
+                    </attList>
+                </classSpec>
+                <classSpec ident="att.pointing" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="targetLang" mode="delete"/>
+                        <attDef ident="evaluate" mode="delete"/>
+                    </attList>
+                </classSpec>
+                <classSpec ident="att.transcriptional" type="atts" mode="change" module="tei">
+                    <attList>
+                        <attDef ident="status" mode="delete"/>
+                        <attDef ident="cause" mode="delete"/>
+                        <attDef ident="seq" mode="delete"/>
+                    </attList>
+                </classSpec>
+            </div>
+            <div>
+                <head>Suppression d'attributs locales</head>
+                <!-- candidates for local suppression:
+                
+                TEI@version
+                change@target
+                docDate@when
+                language@usage
+                listChange@ordered
+                note@anchored
+                note@targetEnd
+                teiHeader@type
+                
+                
+                -->
+            </div>
+            <div>
+                <head>Specification du schéma</head>
+                <schemaSpec ident="tei" docLang="fr" prefix="tei_" start="TEI teiCorpus" xml:lang="en"
+                    targetLang="en">
+                    <moduleRef key="core"
+                        include="add choice corr del author bibl biblScope cb date
+                    editor foreign graphic head  hi imprint index item l label 
+                    lb lg list listBibl milestone name note orig p pb  pubPlace publisher q 
+                    ref reg resp respStmt series sic sp speaker stage teiCorpus term title"/>
+                    <moduleRef key="tei"/>
+                    <moduleRef key="header"
+                        include="authority availability change creation distributor edition 
+                    editionStmt editorialDecl encodingDesc extent
+                    fileDesc funder idno keywords langUsage language licence 
+                    listChange listPrefixDef notesStmt prefixDef
+                    profileDesc projectDesc publicationStmt
+                    revisionDesc sourceDesc teiHeader textClass titleStmt"/>
+                    <!-- publicationstmt shd just have authority and distributor not publisher -->
+                    <moduleRef key="textstructure"
+                        include="TEI back body byline dateline div docAuthor docDate docEdition 
+                    docImprint docTitle epigraph front imprimatur text titlePage titlePart opener closer signed salute"/>
+                    <moduleRef key="figures"
+                        include="cell figDesc figure formula notatedMusic row table"/>
+                    <moduleRef key="linking" include="ab seg"/>
+                    <!-- separate odd for entities person place etc. -->
+                    
+                    <moduleRef key="transcr" include="facsimile line surfaceGrp surface zone" />
+                     <moduleRef key="textcrit" include="app lem rdg rdgGrp"/>
+                    <elementSpec ident="div" mode="change" module="textstructure">
+                        <attList>
+                            <attDef ident="type" mode="change">
+                                <valList mode="replace" type="semi">
+                                    <valItem ident="source">
+                                        <desc>material from a source</desc>
+                                    </valItem>
+                                    <valItem ident="note">
+                                        <desc>annotations</desc>
+                                    </valItem>
+                                    <valItem ident="preface">
+                                        <desc>prefatory comments</desc>
+                                    </valItem>
+                                    <valItem ident="other">
+                                        <desc>autre</desc>
+                                    </valItem>
+                                </valList>
+                            </attDef>
+                            <attDef ident="subtype" mode="change">
+                                <valList mode="replace" type="semi">
+                                    <valItem ident="livre">
+                                        <desc>livre</desc>
+                                    </valItem>
+                                    <valItem ident="chapitre">
+                                        <desc>chapitre</desc>
+                                    </valItem>
+                                    <valItem ident="section">
+                                        <desc>section</desc>
+                                    </valItem>
+                                    <valItem ident="other">
+                                        <desc>autre</desc>
+                                    </valItem>
+                                </valList>
+                            </attDef>
+                        </attList>
+                    </elementSpec>
+                    <specGrpRef target="#deletions"/>
+                    <specGrpRef target="#simplified"/>
+                    <!--    
+                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
+                        ns="http://www.w3.org/2001/XInclude" mode="add">
+                        <desc> The W3C XInclude element</desc>
+                        <classes>
+                            <memberOf key="model.common"/>
+                            <memberOf key="model.headerPart"/>
+                        </classes>
+                        <content>
+                            <rng:optional>
+                                <rng:ref name="fallback"/>
+                            </rng:optional>
+                        </content>
+                        <attList>
+                            <attDef ident="href">
+                                <desc> pointer to the resource being included</desc>
+                                <datatype>
+                                    <rng:ref name="data.pointer"/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="parse" usage="opt">
+                                <defaultVal> xml</defaultVal>
+                                <valList type="closed">
+                                    <valItem ident="xml"/>
+                                    <valItem ident="text"/>
+                                </valList>
+                            </attDef>
+                            <attDef ident="xpointer" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="encoding" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept-charset" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="accept-language" usage="opt">
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                        </attList>
+                    </elementSpec>
+                    <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="fallback"
+                        ns="http://www.w3.org/2001/XInclude" mode="add">
+                        <desc> Wrapper for fallback elements if an XInclude fails</desc>
+                        <content>
+                            <oneOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+                                <choice>
+                                    <text/>
+                                    <ref name="macro.anyThing"/>
+                                </choice>
+                            </oneOrMore>
+                        </content>
+                    </elementSpec>
+                    -->
+                    <!--
+                    <elementSpec ident="cell" module="figures" mode="change">
+                        <attList>
+                            <attDef ident="table" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Type d'élément de tableau (pour Indesign)</desc>
+                                <datatype><rng:text/></datatype>
+                            </attDef>
+                            <attDef ident="crows" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Nombre de rangées sur lesquelles une cellule peut s'étendre (pour
+                                    Indesign)</desc>
+                                <datatype><rng:text/></datatype>
+                            </attDef>
+                            <attDef ident="ccols" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Nombre de colonnes sur lesquelles une cellule peut s'étendre (pour
+                                    Indesign)</desc>
+                                <datatype><rng:text/></datatype>
+                            </attDef>
+                            <attDef ident="cellstyle" mode="add" ns="http://ns.adobe.com/AdobeInDesign/5.0/">
+                                <desc> Style de mise en forme de la cellule (pour Indesign)</desc>
+                                <datatype><rng:text/></datatype>
+                            </attDef>
+                        </attList>
+                    </elementSpec>
+                    <elementSpec ident="table" module="figures" mode="change">
+                        <attList>
+                            <attDef ident="table" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Type d'élément de tableau (pour Indesign)</desc>
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="tcols" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Nombre de colonnes du tableau (pour Indesign)</desc>
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="trows" mode="add" ns="http://ns.adobe.com/AdobeInDesign/4.0/">
+                                <desc> Nombre de rangées du tableau (pour Indesign)</desc>
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                            <attDef ident="tablestyle" mode="add" ns="http://ns.adobe.com/AdobeInDesign/5.0/">
+                                <desc> Style de mise en forme du tableau (pour Indesign)</desc>
+                                <datatype>
+                                    <rng:text/>
+                                </datatype>
+                            </attDef>
+                        </attList>
+                    </elementSpec>-->
+                </schemaSpec>
+            </div>
+        </body>
+    </text>
+</TEI>
